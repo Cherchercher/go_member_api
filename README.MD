@@ -164,7 +164,7 @@ For a User with ID 1 on the local database
 
 ## TO BE CONTINUED
 
-# GET ALL MEMBER BY UNDER ACCOUT_ID
+# GET ALL MEMBERS UNDER ACCOUT_ID
 
 Get all members under account id
 

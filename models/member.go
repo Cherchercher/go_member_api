@@ -21,12 +21,12 @@ type Member struct {
 }
 
 type MemberWithID struct {
-	id               int    `json:"id"`
-	first_name       string `json:"first_name"`
-	last_name        string `json:"last_name"`
-	phone_number     string `json:"phone_number"`
-	client_member_id int    `json:"client_member_id"`
-	account_id       int    `json:"account_id"`
+	ID              int    `json:"id"`
+	FirstName       string `json:"first_name"`
+	LastName        string `json:"last_name"`
+	PhoneNumber     string `json:"phone_number"`
+	ClientMemberID  int    `json:"client_member_id"`
+	AccountID       int    `json:"account_id"`
 }
 
 /*
@@ -127,88 +127,85 @@ func BatchCreateMethodII(inputFile string) error {
 		Transact(mList)
 	}
 	delta := time.Now().Sub(a)
-
 	fmt.Println("all rows inserted successfully in %d nano seconds", delta.Nanoseconds())
 	return nil
 }
 
-func GetMemberById(id int) *Member {
-	member := &Member{}
+func GetMemberByID(id int) (*MemberWithID, error) {
+	member := &MemberWithID{}
 	sqlStatement := `SELECT * FROM member WHERE id=$1`
 	row := GetDB().QueryRow(sqlStatement, id)
-	err := row.Scan(member)
+	err := row.Scan(&member.ID, &member.FirstName, &member.LastName, &member.PhoneNumber, &member.ClientMemberID, &member.AccountID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			fmt.Println("Zero rows found")
 
 		}
 		handleError(err)
-		return nil
+		return member, err
 
 	}
-	return member
+	return member, nil
 }
 
-func GetMemberByPhoneNumber(phone_number string) *MemberWithID {
-	member := MemberWithID{}
+func GetMemberByPhoneNumber(phone_number string) (*MemberWithID, error) {
+	member := &MemberWithID{}
 	sqlStatement := `SELECT * FROM member WHERE phone_number=$1`
 	row := GetDB().QueryRow(sqlStatement, phone_number)
-	err := row.Scan(&member.id, &member.first_name, &member.last_name, &member.phone_number, &member.client_member_id, &member.account_id)
+	err := row.Scan(&member.ID, &member.FirstName, &member.LastName, &member.PhoneNumber, &member.ClientMemberID, &member.AccountID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			fmt.Println("Zero rows found")
 		}
 		handleError(err)
-		return nil
+		return member, err
 
 	}
-	return &member
+	return member, nil
 }
 
-func GetMemberByClientMemberID(client_id int) *MemberWithID {
-	member := MemberWithID{}
+func GetMemberByClientMemberID(client_id int) (*MemberWithID, error) {
+	member := &MemberWithID{}
 	sqlStatement := `SELECT * FROM member WHERE client_member_id=$1`
 	row := GetDB().QueryRow(sqlStatement, client_id)
-	err := row.Scan(&member.id, &member.first_name, &member.last_name, &member.phone_number, &member.client_member_id, &member.account_id)
+	err := row.Scan(&member.ID, &member.FirstName, &member.LastName, &member.PhoneNumber, &member.ClientMemberID, &member.AccountID)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			fmt.Println("Zero rows found")
 		}
 		handleError(err)
-		return nil
+		return member, err
 
 	}
-	return &member
+	return member, nil
 }
 
-func GetMemberByAccountID(account_id int) []*Member {
-
+func GetMembersByAccountID(account_id int) ([]*MemberWithID, error) {
+  members := make([]*MemberWithID, 0)
 	sqlStatement := `SELECT * FROM member WHERE account_id=$1`
 	rows, err := GetDB().Query(sqlStatement, account_id)
 	if err != nil {
 		fmt.Println(err)
-		return nil
+		return members, err
 	}
 
 	defer rows.Close()
-	members := make([]*Member, 0)
 	for rows.Next() {
-		member := Member{}
-		err := rows.Scan(&member.first_name, &member.last_name, &member.phone_number, &member.client_member_id, &member.account_id)
+		member := MemberWithID{}
+		err := rows.Scan(&member.ID, &member.FirstName, &member.LastName, &member.PhoneNumber, &member.ClientMemberID, &member.AccountID)
 		if err != nil {
 			fmt.Println(err)
-			return nil
+			return members, err
 		}
 		members = append(members, &member)
 	}
-
 	err = rows.Err()
 	if err != nil {
 		fmt.Println(err)
-		return nil
+		return members, err
 	}
 
-	return members
+	return members, nil
 }
 
 func handleError(err error) {

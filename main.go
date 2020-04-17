@@ -13,7 +13,8 @@ func main() {
 	router := mux.NewRouter()
 
 	router.HandleFunc("/api/members/new", controllers.CreateMember).Methods("POST")
-	router.HandleFunc("/api/members/account_id/{account_id}", controllers.GetMemberByAccountID).Methods("GET")
+	router.HandleFunc("/api/members/id/{id}", controllers.GetMemberByID).Methods("GET")
+	router.HandleFunc("/api/members/account_id/{account_id}", controllers.GetMembersByAccountID).Methods("GET")
 	router.HandleFunc("/api/members/phone_number/{phone_number}", controllers.GetMemberByPhoneNumber).Methods("GET")
 	router.HandleFunc("/api/members/client_member_id/{client_member_id}", controllers.GetMemberByClientMemberID).Methods("GET")
 
