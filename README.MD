@@ -15,12 +15,14 @@ Batching is achieved using prepared statement and transaction(1000 rows max per 
 go run test
 
 ## TODO
+1. auto migrate database: CREATE TABLE member (
+id serial, first_name VARCHAR(50),last_name VARCHAR(50),phone_number integer UNIQUE, client_member_id integer UNIQUE, account_id integer)
+2. finish writing tests
+3. finish implemtation of GET apis
+4. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds (0.02 second)
+5. finish api docs
 
-1. finish writing tests
-2. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds
-3. finish api docs
-
-# Login
+# Batch Create
 
 Insert data into postgres db from csv
 
@@ -70,6 +72,7 @@ Insert data into postgres db from csv
   "error": "file not found."
 }
 ```
+To Be Continued 
 
 # GET MEMBER BY CLIENT_MEMBER_ID
 
@@ -100,7 +103,7 @@ For a User with client member id 1234 on the local database
 
 ## ERROR RESPONSE
 
-## TO BE CONTINUED
+To Be Continued 
 
 # GET MEMBER BY PHONE_NUMBER
 
@@ -131,7 +134,7 @@ For a User with phone number 9495112222 on the local database
 
 ## ERROR RESPONSE
 
-## TO BE CONTINUED
+To Be Continued 
 
 # GET MEMBER BY ID
 
@@ -162,7 +165,7 @@ For a User with ID 1 on the local database
 
 ## ERROR RESPONSE
 
-## TO BE CONTINUED
+To Be Continued 
 
 # GET ALL MEMBERS UNDER ACCOUT_ID
 
