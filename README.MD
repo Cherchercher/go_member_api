@@ -70,6 +70,7 @@ Insert data into postgres db from csv
   "error": "file not found."
 }
 ```
+To Be Continued 
 
 # GET MEMBER BY CLIENT_MEMBER_ID
 
@@ -100,7 +101,7 @@ For a User with client member id 1234 on the local database
 
 ## ERROR RESPONSE
 
-## TO BE CONTINUED
+To Be Continued 
 
 # GET MEMBER BY PHONE_NUMBER
 
@@ -131,7 +132,7 @@ For a User with phone number 9495112222 on the local database
 
 ## ERROR RESPONSE
 
-## TO BE CONTINUED
+To Be Continued 
 
 # GET MEMBER BY ID
 
@@ -162,7 +163,7 @@ For a User with ID 1 on the local database
 
 ## ERROR RESPONSE
 
-## TO BE CONTINUED
+To Be Continued 
 
 # GET ALL MEMBER BY UNDER ACCOUT_ID
 
