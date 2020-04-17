@@ -1,6 +1,6 @@
 ## MVP:
 
-APIs for inserting large csv files ro and retrieving data from local postgres db
+APIs for inserting large csv files to and retrieving data from local postgres db
 
 Batching is achieved using prepared statement and transaction(1000 rows max per transaction)
 
@@ -108,7 +108,7 @@ To Be Continued
 
 Get a member by phone_number
 
-**URL** : `/members/client_member_id/{phone_number}`
+**URL** : `/members/phone_number/{phone_number}`
 
 **Method** : `GET`
 
