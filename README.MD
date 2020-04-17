@@ -1,6 +1,6 @@
 ## MVP:
 
-APIs for inserting large csv files into postgres.
+APIs for inserting large csv files ro and retrieving data from local postgres db
 
 Batching is achieved using prepared statement and transaction(1000 rows max per transaction)
 
@@ -18,9 +18,8 @@ go run test
 1. auto migrate database: CREATE TABLE member (
 id serial, first_name VARCHAR(50),last_name VARCHAR(50),phone_number integer UNIQUE, client_member_id integer UNIQUE, account_id integer)
 2. finish writing tests
-3. finish implemtation of GET apis
-4. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds (0.02 second)
-5. finish api docs
+3. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds (0.02 second)
+5. finish the error section of api docs
 
 # Batch Create
 
