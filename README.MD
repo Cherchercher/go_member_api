@@ -17,7 +17,8 @@ go run test
 ## TODO
 
 1. finish writing tests
-2. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds
+2. finish implemtation of GET apis
+2. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds (0.02 second)
 3. finish api docs
 
 # Batch Create
