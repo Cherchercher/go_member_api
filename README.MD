@@ -18,6 +18,7 @@ go run test
 1. auto migrate database: CREATE TABLE member (
 id serial, first_name VARCHAR(50),last_name VARCHAR(50),phone_number integer UNIQUE, client_member_id integer UNIQUE, account_id integer)
 2. finish writing tests
+4. handle collisions in transation
 3. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds (0.02 second)
 5. finish the error section of api docs
 
