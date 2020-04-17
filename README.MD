@@ -20,7 +20,7 @@ go run test
 2. run time analysis for large csv files across different insert/batching methods. Currently, inserting 1000 rows takes 21730875 nano seconds
 3. finish api docs
 
-# Login
+# Batch Create
 
 Insert data into postgres db from csv
 
